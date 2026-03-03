@@ -224,7 +224,7 @@ int inst_to_binary(
         exit(EXIT_FAILURE);
     } else if (is_opcode(opcode) == ANDI) {
         /* Lab2-1 assignment */
-        warn("Lab2-1 assignment: ADDI instruction\n");
+        warn("Lab2-1 assignment: ANDI instruction\n");
         exit(EXIT_FAILURE);
     } else if (is_opcode(opcode) == LUI) {
         binary = (0x0D << 2) + 0x03;
