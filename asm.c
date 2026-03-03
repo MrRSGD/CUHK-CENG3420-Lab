@@ -107,7 +107,7 @@ struct_regs_indirect_addr* parse_regs_indirect_addr(char *arg2, int line_no) {
     char *reg, *imm;
     char temp[MAX_LINE_LENGTH + 1];
     int i = 0;
-    if ((ret = (struct_regs_indirect_addr *)malloc(sizeof(ret))) == NULL)
+    if ((ret = (struct_regs_indirect_addr *)malloc(sizeof(*ret))) == NULL)
         handle_err(11, line_no);
     while (arg2[i] != '\0') {
         temp[i] = arg2[i];
