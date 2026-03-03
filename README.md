@@ -20,8 +20,6 @@ CENG3420 Lab Assignments
 - please refer to the code website: https://github.com/baichen318/ceng3420
 
 ## History
-* Mar.  3, 2026: Update Lab 2-2, including
-    - fix the bug of parse_regs_indirect_addr in `sim.c`
 * Mar.  8, 2023: Update Lab 2-2, including
     - update the BEQ example
     - update Makefile
