@@ -509,7 +509,7 @@ int is_arg(char *ptr) {
     else if (is_regs_indirect_addr(ptr) != MISMATCH)
         return REGS_INDIRECT_ADDR;
     else
-        return REGS_INDIRECT_ADDR;
+        return MISMATCH;
 }
 
 
