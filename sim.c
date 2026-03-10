@@ -44,7 +44,7 @@ void load_program(char *program_filename) {
     i = 0;
     while (fscanf(prog, "%x\n", &word) != EOF) {
         /* make sure the program fit the memory */
-        if (program_base + i >= BYTES_IN_MEM) {
+        if (program_base + i + 3 >= BYTES_IN_MEM) {
             error(
             	"program file %s is too long to fit in memory at the address: %x\n",
             	program_filename, i
@@ -230,7 +230,7 @@ void run(int num_cycles) {
 
 /* return the word content start from `start_addr` */
 int read_mem(int start_addr) {
-    if (start_addr % 2 || start_addr >= BYTES_IN_MEM)
+    if (start_addr < 0 || start_addr % 4 || start_addr + 3 >= BYTES_IN_MEM)
         error("read the un-aligned address, or the address is out of boundary.\n");
 
     return (MEMORY[start_addr + 3] << 24) + \
@@ -429,7 +429,7 @@ void handle_beq(unsigned int cur_inst) {
             (MASK30_25(cur_inst) << 5) + \
             (MASK11_8(cur_inst) << 1);
     if (CURRENT_LATCHES.REGS[rs1] == CURRENT_LATCHES.REGS[rs2])
-        NEXT_LATCHES.PC = sext(imm12, 12) + CURRENT_LATCHES.PC;
+            NEXT_LATCHES.PC = sext(imm12, 13) + CURRENT_LATCHES.PC;
 }
 
 
