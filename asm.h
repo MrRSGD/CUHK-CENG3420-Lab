@@ -61,7 +61,7 @@ enum {
     /* immediate value identifiers */
     DEC, HEX,
     /* special identifiers */
-    MISMATCH,
+    MISMATCH=100,
     /* type of instructions */
     TYPE1, TYPE2, TYPE3, TYPE4,
     TYPE5, TYPE6, TYPE7
