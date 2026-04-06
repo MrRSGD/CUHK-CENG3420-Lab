@@ -38,7 +38,7 @@ void eval_bus_drivers()
     value_of_GateRS2 = 0;
 
     int isBranch = mask_val(CURRENT_LATCHES.IR, 6, 0) == 1100011;
-    if (isBranch)
+    if (get_LD_BEN(CURRENT_LATCHES.MICROINSTRUCTION))
     {
         printf("%s", "branch\n");
     }
@@ -88,7 +88,7 @@ void eval_bus_drivers()
     value_of_GateMAR = mar_mux(
         get_MARMUX(CURRENT_LATCHES.MICROINSTRUCTION),
         value_of_MARMUX,
-        logic_shift_20_function_unit(mask_val(CURRENT_LATCHES.IR, 31, 12)));
+        logic_shift_20_function_unit(sext_unit(mask_val(CURRENT_LATCHES.IR, 31, 12), 20)));
 
     /* output of ALU */
     value_of_alu = alu(
@@ -143,8 +143,7 @@ void eval_bus_drivers()
     // error("Lab3-3 assignment: value_of_GateRS2 = ?;\n");
     value_of_GateRS2 = rs2_en(
         get_RS2En(CURRENT_LATCHES.MICROINSTRUCTION),
-        CURRENT_LATCHES.REGS[mask_val(CURRENT_LATCHES.IR, 24, 20)]),
-    sext_unit(mask_val(CURRENT_LATCHES.IR, 31, 20), 12);
+        CURRENT_LATCHES.REGS[mask_val(CURRENT_LATCHES.IR, 24, 20)]);
 
     /* input of GateMDR */
     value_of_GateMDR = CURRENT_LATCHES.MDR;
